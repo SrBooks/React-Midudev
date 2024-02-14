@@ -21,6 +21,11 @@ const users = [
     userName: 'isthatpaus',
     name: 'Yin',
     isFollowing: true
+  },
+  {
+    userName: 'HIDEO_KOJIMA',
+    name: 'HIDEO KOJIMA',
+    isFollowing: true
   }
 ]
 
