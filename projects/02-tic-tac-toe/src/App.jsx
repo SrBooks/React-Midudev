@@ -50,12 +50,11 @@ function App() {
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
 
-    //save game status
+    //save game to storage
     saveGameToStorage({
       board: newBoard,
       turn: newTurn
     })
-    
 
     //check if there is a winner
     const newWinner = checkWinnerFrom(newBoard)
@@ -65,8 +64,9 @@ function App() {
     } else if (checkEndGame(newBoard)) {
       setWinner(false)
     }
-  }
 
+   
+  }
 
 
   return (
