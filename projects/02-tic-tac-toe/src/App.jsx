@@ -3,8 +3,8 @@ import './App.css'
 
 import confetti from 'canvas-confetti'
 
-import {Square} from './components/Square.jsx'
-import {TURNS} from './components/constants.js'
+import { Square } from './components/Square.jsx'
+import { TURNS } from './components/constants.js'
 import { checkWinnerFrom, checkEndGame } from './logic/board.js'
 import { WinnerModal } from './components/WinnerModal.jsx'
 import { saveGameToStorage, resetGameStorage } from './logic/storage/index.js'
@@ -39,34 +39,35 @@ function App() {
   const updateBoard = (index) => {
 
     //we do not update this position, if it already has a value of
-    if(board[index] || winner) return
-    
+    if (board[index] || winner) return
+
     //update board
     const newBoard = [...board]
     newBoard[index] = turn
     setBoard(newBoard)
- 
+
     //we change the turn
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
 
+    //save game status
     saveGameToStorage({
       board: newBoard,
       turn: newTurn
     })
-    //save game status
+    
 
     //check if there is a winner
     const newWinner = checkWinnerFrom(newBoard)
-    if(newWinner) {
+    if (newWinner) {
       confetti()
       setWinner(newWinner)
-    } else if (checkEndGame(newBoard)){
+    } else if (checkEndGame(newBoard)) {
       setWinner(false)
     }
   }
 
-  
+
 
   return (
     <main className='board'>
@@ -98,9 +99,7 @@ function App() {
         </Square>
       </section>
 
-      <WinnerModal resetGame={resetGame} winner={winner}/>
-
-
+      <WinnerModal resetGame={resetGame} winner={winner} />
 
     </main>
 
